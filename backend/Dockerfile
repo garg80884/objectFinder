@@ -30,6 +30,7 @@ RUN pip install -r requirements.txt
 # Expose port (important for Render)
 ENV PORT=10000
 EXPOSE 10000
+ENV PYTHONPATH="${PYTHONPATH}:/opt/render/project/src/GroundingDINO"
 
 # Start the app
 CMD ["python", "universal_locator.py"]

@@ -6,4 +6,3 @@ torchvision==0.22.1
 opencv-python
 openmim
 mmdet
-git+https://github.com/facebookresearch/segment-anything.git
