@@ -1,0 +1,24 @@
+FROM python:3.10
+
+WORKDIR /app
+
+# System-level dependencies
+RUN apt-get update && apt-get install -y git
+
+# Copy all source code
+COPY . .
+
+# Upgrade pip and install PyTorch first
+RUN pip install --upgrade pip
+RUN pip install torch==2.7.1 torchvision==0.22.1
+
+# ✅ Manually clone GroundingDINO and install it
+RUN git clone https://github.com/IDEA-Research/GroundingDINO.git /app/GroundingDINO
+RUN pip install -e /app/GroundingDINO
+
+# ✅ Now install the rest of your requirements
+RUN pip install -r requirements.txt
+
+EXPOSE 5000
+
+CMD ["python", "universal_locator.py"]
